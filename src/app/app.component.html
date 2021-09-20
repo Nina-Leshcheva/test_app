@@ -1,0 +1,79 @@
+<div class="main-container">
+  <div class="form-container">
+    <div class="form-content">
+      <img class="sopra-logo" [src]="'assets/images/logo.jpg'" />
+      <h3>Prueba Técnica</h3>
+      <form [formGroup]="accessForm" (ngSubmit)="onSubmit()">
+        <div class="input-container">
+          <div class="input-content">
+            <span class="material-icons">person_outline</span>
+            <input
+              id="email"
+              class="form-input input-mail"
+              type="mail"
+              formControlName="email"
+              [class.invalid]="
+                accessForm.controls['email'].invalid &&
+                accessForm.controls['email'].touched
+              "
+            />
+            <label
+              for="emal"
+              class="form-label"
+              [class.dirty]="
+                accessForm.controls['email'].touched ||
+                accessForm.controls['email'].dirty
+              "
+              >Email</label
+            >
+
+            <span
+              *ngIf="
+                accessForm.controls['email'].invalid &&
+                accessForm.controls['email'].touched
+              "
+              class="invalid-text"
+              >{{ showMessage("email", accessForm.controls["email"]) }}</span
+            >
+          </div>
+          <div class="input-content">
+            <span class="material-icons"> lock_outline</span>
+            <input
+              id="password"
+              class="form-input input-password"
+              type="password"
+              formControlName="password"
+              [class.invalid]="
+                accessForm.controls['password'].invalid &&
+                accessForm.controls['password'].touched
+              "
+            />
+            <label
+              for="password"
+              class="form-label"
+              [class.dirty]="
+                accessForm.controls['email'].touched ||
+                accessForm.controls['email'].dirty
+              "
+              >Contraseña</label
+            >
+            <span
+              *ngIf="
+                accessForm.controls['password'].invalid &&
+                accessForm.controls['password'].touched
+              "
+              class="invalid-text"
+              >{{
+                showMessage("password", accessForm.controls["password"])
+              }}</span
+            >
+          </div>
+          <mat-slide-toggle color="primary" labelPosition="before"
+            >Recordar</mat-slide-toggle
+          >
+        </div>
+        <button class="form-button" type="submit"><span>Acceder</span></button>
+      </form>
+    </div>
+  </div>
+</div>

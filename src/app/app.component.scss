@@ -1,0 +1,194 @@
+$primary-blue: #1271ce;
+$bg-default-color: #ffffff;
+$default-font-color: #cecece;
+$danger: red;
+
+body {
+  margin: 0;
+}
+.main-container {
+  background: url("../assets/images/background.jpg") no-repeat center center
+    fixed;
+  width: 100%;
+  height: 100vh;
+  .sopra-logo {
+    width: 140px;
+    height: 80px;
+    clip-path: inset(0 60px 0 0px);
+    align-self: center;
+    margin-left: 60px;
+    margin-bottom: 15px;
+  }
+  h3 {
+    align-self: center;
+    font-weight: 500;
+  }
+  .form-container {
+    display: flex;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+    height: 100vh;
+    .form-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: normal;
+      justify-content: flex-start;
+      width: 300px;
+      margin: auto;
+      padding: 1rem 0;
+      background-color: $bg-default-color;
+      max-width: 1000px;
+      box-sizing: border-box;
+      form {
+        background-color: $bg-default-color;
+        .input-container {
+          padding: 10px 15px 0;
+          .form-input {
+            border: none;
+            border-bottom: 1px solid $default-font-color;
+            padding: 15px 0 15px 25px;
+            &.invalid {
+              border-bottom: 1px solid $danger;
+            }
+            &:focus ~ .form-label,
+            ~ .form-label.dirty {
+              top: -7px;
+              font-size: 10px;
+              left: 5px;
+            }
+          }
+          .input-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            .form-label {
+              position: absolute;
+              left: 22px;
+              top: 13px;
+              color: $default-font-color;
+              transition: top 200ms ease-in, left 200ms ease-in,
+                font-size 200ms ease-in;
+            }
+            .material-icons {
+              position: absolute;
+              top: 12px;
+              color: $default-font-color;
+              opacity: 0.5;
+              font-size: 20px;
+            }
+          }
+          .invalid-text {
+            color: $danger;
+            margin: 3px 0;
+            display: flex;
+            font-size: 10px;
+          }
+          input:focus-visible {
+            outline: none;
+          }
+          mat-slide-toggle {
+            margin: 10px 0;
+          }
+        }
+        .form-button {
+          border: 1pt solid $primary-blue;
+          border-radius: 21px;
+          padding: 6px 30px;
+          align-self: center;
+          font-weight: 600;
+          margin: auto;
+          display: block;
+          cursor: pointer;
+          background: linear-gradient(
+            to right,
+            $primary-blue 50%,
+            $bg-default-color 50%
+          );
+          background-size: 201% 100%;
+          background-position: right bottom;
+          transition: all 0.3s ease-out;
+          &:hover {
+            background-position: left bottom;
+            span {
+              transition: all 0.4s ease-out;
+              color: $bg-default-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+:host::ng-deep {
+  .mat-slide-toggle {
+    display: flex;
+    .mat-slide-toggle-label {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+@media only screen and (max-width: 960px) {
+  .main-container {
+    .form-container {
+      .form-content {
+        background-color: transparent;
+        h3 {
+          display: none;
+        }
+        form {
+          .form-button {
+            border: none;
+            width: 100%;
+            background-color: $primary-blue;
+            color: $bg-default-color;
+            border-radius: inherit;
+            padding: 10px 0;
+            transition: all 0.5s;
+            position: relative;
+            &:before,
+            &:after {
+              content: "";
+              position: absolute;
+              bottom: -1px;
+              left: 2px;
+              width: 99%;
+              height: 99%;
+              z-index: 1;
+              opacity: 0;
+              transition: all 0.5s;
+            }
+            &:before {
+              border-top: 1px solid $primary-blue;
+              border-bottom: 1px solid $primary-blue;
+              transform: scale(0.1, 1);
+            }
+
+            &:hover span {
+              letter-spacing: 2px;
+            }
+            &:hover::before {
+              opacity: 1;
+              transform: scale(1, 1);
+            }
+            &:hover::after {
+              opacity: 0;
+              transform: scale(0.1, 1);
+            }
+            &:hover {
+              background-color: transparent;
+              color: $primary-blue;
+            }
+          }
+        }
+      }
+    }
+  }
+}
